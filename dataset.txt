@@ -1,0 +1,6 @@
+name	email	password	address	details
+chris	chris@exw.email1	password1	thess1	cust1
+chr12s	chris@exw.email2	password2	thess2	cust2
+chris123	mprat@mail.google3	password3	thess3	cust3
+123chris	athens@flwroi.gr4	password4	thess4	cust4
+ch123ris	athens@flwroi.gr5	password5	thess5	cust5
