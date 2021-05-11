@@ -1,7 +1,10 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
+import java.io.IOException;  // Import the IOException class to handle errors
 
 public class Anonymizer {
 
@@ -57,10 +60,8 @@ public class Anonymizer {
         try {
           if (header[i].equals(field)){
             for (String[] line : data) {
-              String encrypted = AES.encrypt(line[i], sKey);
-              line[i].replace(line[i], encrypted);
-
-              System.out.println(encrypted + " = " + line[i]);
+              line[i] = AES.encrypt(line[i], sKey);
+              System.out.println(line[i]);
             }
           }
         } catch (ArrayIndexOutOfBoundsException e) {}
@@ -75,17 +76,64 @@ public class Anonymizer {
     return "12334567890qwert";
   }
 
-  public void printData() {
+  public void printData(String[][] data) {
     for (String field : configLines) {
       System.out.println(field);
     }
-    for (String line : datasetLines) {
-      System.out.println(line);
+    for (String[] line : data) {
+      System.out.println(Arrays.toString(line));
+    }
+  }
+
+  public void createEncryptedFile(String[][] data, String[] header) {
+    createNewDatasetFile();
+    writeToDatasetFile(data, header);
+    System.out.println("Created succcefully.");
+  }
+
+  private void writeToDatasetFile(String[][] data, String[] header) {
+    try {
+      FileWriter myWriter = new FileWriter("datasetEncrypted.txt");
+
+      //write header of file
+      for (String word : header) {
+          myWriter.write(word + "\t");
+          System.out.print(word + "\t");
+        }
+      myWriter.write("\n");
+      //write encrypted data
+      for (String[] line : data) {
+        for (String word : line) {
+          myWriter.write(word + "\t");
+          System.out.print(word + "\t");
+        }
+        myWriter.write("\n");
+        System.out.print("\n");
+      }
+      myWriter.close();
+      System.out.println("Successfully wrote to the file.");
+    } catch (IOException e) {
+      System.out.println("An error occurred.");
+      e.printStackTrace();
+    }
+  }
+
+  private void createNewDatasetFile() {
+    try {
+      File myObj = new File("datasetEncrypted.txt");
+      if (myObj.createNewFile()) {
+        System.out.println("File created: " + myObj.getName());
+      } else {
+        System.out.println("File already exists.");
+      }
+    } catch (IOException e) {
+      System.out.println("An error occurred.");
+      e.printStackTrace();
     }
   }
 
 
-  private static void loadFiles(ArrayList<String> lines, String dataFileName) {
+  private void loadFiles(ArrayList<String> lines, String dataFileName) {
     try {
       File file = new File(dataFileName);
       Scanner dataReader = new Scanner(file);

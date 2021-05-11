@@ -1,0 +1,6 @@
+name	email	password	address	details	
+chris	chris@exw.email1	+8QZ8M2O5iZzLLahh8H/tA==	Xz7UblV1OwaJUF2ebqY2Vg==	cust1	
+chr12s	chris@exw.email2	7Z/EKsjUyHp0K+pSwrOpXg==	QNSx7XT2bPgFGZQe3QMvYw==	cust2	
+chris123	mprat@mail.google3	CjH0hCi77dpf+BbHJMP/vA==	frYPftMdlraFsOtLm2Ka7Q==	cust3	
+123chris	athens@flwroi.gr4	JA2sDh+9DKD1SpNWdKKNvg==	RuKIGiVBfhYS0SBiEfLgLw==	cust4	
+ch123ris	athens@flwroi.gr5	N1MhVUhdzrhqt5J505Tn0w==	Wf6gGN+si7UdJEfEboXllQ==	cust5	
